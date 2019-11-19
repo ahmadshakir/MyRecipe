@@ -15,6 +15,7 @@
 		0A2B8DFF23836CF4000C6770 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A2B8DFD23836CF4000C6770 /* LaunchScreen.storyboard */; };
 		0A9C7EA123837704000A6039 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9C7EA023837704000A6039 /* TableViewController.swift */; };
 		0A9C7EA323837E92000A6039 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9C7EA223837E92000A6039 /* ImagePicker.swift */; };
+		0AA382042383C05900006709 /* recipetypes.xml in Resources */ = {isa = PBXBuildFile; fileRef = 0AA382032383C05900006709 /* recipetypes.xml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		0A2B8E0023836CF4000C6770 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A9C7EA023837704000A6039 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		0A9C7EA223837E92000A6039 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		0AA382032383C05900006709 /* recipetypes.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = recipetypes.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				0A2B8DFD23836CF4000C6770 /* LaunchScreen.storyboard */,
 				0A2B8E0023836CF4000C6770 /* Info.plist */,
 				0A2B8DF823836CF3000C6770 /* MyRecipe.xcdatamodeld */,
+				0AA382032383C05900006709 /* recipetypes.xml */,
 			);
 			path = MyRecipe;
 			sourceTree = "<group>";
@@ -134,6 +137,7 @@
 				0A2B8DFF23836CF4000C6770 /* LaunchScreen.storyboard in Resources */,
 				0A2B8DFC23836CF4000C6770 /* Assets.xcassets in Resources */,
 				0A2B8DF723836CF3000C6770 /* Main.storyboard in Resources */,
+				0AA382042383C05900006709 /* recipetypes.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

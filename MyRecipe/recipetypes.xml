@@ -1,0 +1,19 @@
+
+<?xml version="1.0"?>
+<catalog>
+    <types id="1">
+        <name>Vegetarian</name>
+    </types>
+    <types id="2">
+        <name>Fast Food</name>
+    </types>
+    <types id="3">
+        <name>Healthy</name>
+    </types>
+    <types id="4">
+        <name>No-Cook</name>
+    </types>
+    <types id="5">
+        <name>Make Ahead</name>
+    </types>
+</catalog>

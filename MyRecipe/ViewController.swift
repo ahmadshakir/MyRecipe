@@ -9,7 +9,15 @@
 import UIKit
 import CoreData
 
-class ViewController: UIViewController {
+struct RecipeTypes {
+    var typeName: String
+}
+
+class ViewController: UIViewController,XMLParserDelegate {
+    
+    var recipetypes: [RecipeTypes] = []
+    var elementName: String = String()
+    var typeName = String()
 
     @IBOutlet weak var image: UITextView!
     @IBOutlet weak var ingredient: UITextView!
@@ -29,7 +37,7 @@ class ViewController: UIViewController {
     
     
     @IBAction func btnsave(_ sender: Any) {
-        if imagetext == ""{
+        if imagetext == "" || imagetext == "" {
             save()
         }
         else{
@@ -52,6 +60,15 @@ class ViewController: UIViewController {
         self.imagePicker = ImagePicker(presentationController: self, delegate: self)
         
         set()
+        
+        if let path = Bundle.main.url(forResource: "recipetypes", withExtension: "xml") {
+            if let parser = XMLParser(contentsOf: path) {
+                parser.delegate = self
+                parser.parse()
+            }
+        }
+        
+        print(recipetypes)
     }
     
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
@@ -203,7 +220,39 @@ class ViewController: UIViewController {
         //imagetext=""
         ingtext=""
         steptext=""
+        image2data=nil
     }
+    
+    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
+        
+        if elementName == "types" {
+            typeName = String()
+        }
+        
+        self.elementName = elementName
+    }
+    
+    
+    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+        if elementName == "types" {
+            let types = RecipeTypes(typeName: typeName)
+            print(types)
+            recipetypes.append(types)
+        }
+    }
+    
+    
+    func parser(_ parser: XMLParser, foundCharacters string: String) {
+        let data = string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        
+        if (!data.isEmpty) {
+            if self.elementName == "name" {
+                typeName += data
+            }
+        }
+    }
+    
+        
    
     
 }
