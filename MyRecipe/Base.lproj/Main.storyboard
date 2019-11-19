@@ -72,7 +72,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hVX-MR-PNH">
-                                                <rect key="frame" x="10" y="10" width="394" height="156"/>
+                                                <rect key="frame" x="10" y="41" width="394" height="156"/>
                                                 <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="156" id="4Ub-fs-jex"/>
@@ -81,13 +81,13 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="zh9-yM-KGN">
-                                                <rect key="frame" x="10" y="176" width="394" height="156"/>
+                                                <rect key="frame" x="10" y="207" width="394" height="156"/>
                                                 <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="3Pj-pO-RwA">
-                                                <rect key="frame" x="10" y="342" width="394" height="156"/>
+                                                <rect key="frame" x="10" y="373" width="394" height="156"/>
                                                 <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -97,23 +97,32 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Category" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fy7-8c-dYr">
+                                                <rect key="frame" x="10" y="10" width="394" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="3Pj-pO-RwA" firstAttribute="top" secondItem="zh9-yM-KGN" secondAttribute="bottom" constant="10" id="1q6-Bf-g3l"/>
-                                            <constraint firstItem="hVX-MR-PNH" firstAttribute="top" secondItem="Dy7-y6-uJt" secondAttribute="top" constant="10" id="430-pm-2jC"/>
                                             <constraint firstItem="hVX-MR-PNH" firstAttribute="leading" secondItem="Dy7-y6-uJt" secondAttribute="leading" constant="10" id="9Fi-6M-Ap8"/>
                                             <constraint firstItem="zh9-yM-KGN" firstAttribute="top" secondItem="hVX-MR-PNH" secondAttribute="bottom" constant="10" id="FUu-Xa-UAh"/>
                                             <constraint firstItem="zh9-yM-KGN" firstAttribute="height" secondItem="hVX-MR-PNH" secondAttribute="height" id="G4S-9b-OCi"/>
+                                            <constraint firstAttribute="trailing" secondItem="fy7-8c-dYr" secondAttribute="trailing" constant="10" id="HPU-LF-0kV"/>
                                             <constraint firstAttribute="trailing" secondItem="hVX-MR-PNH" secondAttribute="trailing" constant="10" id="Hwu-Hm-wac"/>
                                             <constraint firstItem="3Pj-pO-RwA" firstAttribute="height" secondItem="hVX-MR-PNH" secondAttribute="height" id="Ukn-wR-MlI"/>
+                                            <constraint firstItem="fy7-8c-dYr" firstAttribute="leading" secondItem="Dy7-y6-uJt" secondAttribute="leading" constant="10" id="Y6l-OJ-XcC"/>
                                             <constraint firstItem="3Pj-pO-RwA" firstAttribute="centerX" secondItem="Dy7-y6-uJt" secondAttribute="centerX" id="aPb-Mt-LmP"/>
                                             <constraint firstAttribute="trailing" secondItem="zh9-yM-KGN" secondAttribute="trailing" constant="10" id="awm-vA-1Hf"/>
                                             <constraint firstItem="3Pj-pO-RwA" firstAttribute="leading" secondItem="Dy7-y6-uJt" secondAttribute="leading" constant="10" id="f5C-Zx-dOf"/>
                                             <constraint firstAttribute="trailing" secondItem="3Pj-pO-RwA" secondAttribute="trailing" constant="10" id="gMS-Xx-ird"/>
+                                            <constraint firstItem="hVX-MR-PNH" firstAttribute="top" secondItem="fy7-8c-dYr" secondAttribute="bottom" constant="10" id="noC-d4-0Bc"/>
                                             <constraint firstItem="zh9-yM-KGN" firstAttribute="top" secondItem="hVX-MR-PNH" secondAttribute="bottom" constant="10" id="obM-c8-K9F"/>
                                             <constraint firstItem="hVX-MR-PNH" firstAttribute="centerX" secondItem="Dy7-y6-uJt" secondAttribute="centerX" id="qdi-d9-8jf"/>
                                             <constraint firstItem="zh9-yM-KGN" firstAttribute="leading" secondItem="Dy7-y6-uJt" secondAttribute="leading" constant="10" id="tDe-W3-n88"/>
+                                            <constraint firstItem="fy7-8c-dYr" firstAttribute="top" secondItem="Dy7-y6-uJt" secondAttribute="top" constant="10" id="zKX-4u-Lva"/>
                                             <constraint firstItem="3Pj-pO-RwA" firstAttribute="top" secondItem="zh9-yM-KGN" secondAttribute="bottom" constant="10" id="zp6-ro-g6h"/>
                                         </constraints>
                                     </view>
@@ -147,6 +156,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="category" destination="fy7-8c-dYr" id="iKp-lg-edX"/>
                         <outlet property="image" destination="hVX-MR-PNH" id="Lgf-j6-J7T"/>
                         <outlet property="image2" destination="Csw-yq-yQF" id="NNy-HZ-NwH"/>
                         <outlet property="ingredient" destination="zh9-yM-KGN" id="L4p-3L-G1y"/>

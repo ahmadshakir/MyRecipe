@@ -15,11 +15,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var ingredient: UITextView!
     @IBOutlet weak var step: UITextView!
     @IBOutlet weak var image2: UIImageView!
+    @IBOutlet weak var category: UILabel!
     
     var imagetext:String = ""
     var ingtext:String = ""
     var steptext:String = ""
     var image2data:NSData?
+    var categorytext:String = ""
     
     
     
@@ -96,6 +98,7 @@ class ViewController: UIViewController {
         user.setValue(ingredient.text, forKey: "ingredient")
         user.setValue(step.text, forKey: "step")
         user.setValue(imageData, forKey: "image2")
+        user.setValue(category.text, forKey: "category")
         
         
         //Now we have set all the values. The next step is to save them inside the Core Data
@@ -140,6 +143,7 @@ class ViewController: UIViewController {
                 ingtext=data.value(forKey: "ingredient") as! String
                 steptext=data.value(forKey: "step") as! String
                 image2data=(data.value(forKey: "image2")) as? NSData
+                categorytext=data.value(forKey: "category") as! String
             }
             
         } catch {
@@ -169,6 +173,7 @@ class ViewController: UIViewController {
             objectUpdate.setValue(ingredient.text, forKey: "ingredient")
             objectUpdate.setValue(step.text, forKey: "step")
             objectUpdate.setValue(imageData, forKey: "image2")
+            objectUpdate.setValue(category.text, forKey: "category")
             do{
                 try managedContext.save()
                 self.navigationController?.popViewController(animated: true)
