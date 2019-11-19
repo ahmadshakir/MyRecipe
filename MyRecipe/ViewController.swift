@@ -13,7 +13,7 @@ struct RecipeTypes {
     var typeName: String
 }
 
-class ViewController: UIViewController,XMLParserDelegate {
+class ViewController: UIViewController,XMLParserDelegate,UIPickerViewDelegate, UIPickerViewDataSource {
     
     var recipetypes: [RecipeTypes] = []
     var elementName: String = String()
@@ -24,6 +24,7 @@ class ViewController: UIViewController,XMLParserDelegate {
     @IBOutlet weak var step: UITextView!
     @IBOutlet weak var image2: UIImageView!
     @IBOutlet weak var category: UILabel!
+    @IBOutlet weak var pickerview: UIPickerView!
     
     var imagetext:String = ""
     var ingtext:String = ""
@@ -46,8 +47,17 @@ class ViewController: UIViewController,XMLParserDelegate {
         }
             
     }
+    
+  
+    
+    var typeArray = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        pickerview.delegate = self
+        pickerview.dataSource = self
+        pickerview.isHidden = true
         
         if let path = Bundle.main.url(forResource: "recipetypes", withExtension: "xml") {
             if let parser = XMLParser(contentsOf: path) {
@@ -64,6 +74,7 @@ class ViewController: UIViewController,XMLParserDelegate {
         category.isUserInteractionEnabled = true
         category.addGestureRecognizer(tap)
         
+        
         self.imagePicker = ImagePicker(presentationController: self, delegate: self)
         
         set()
@@ -71,6 +82,27 @@ class ViewController: UIViewController,XMLParserDelegate {
         
         print(recipetypes)
     }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return typeArray.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return typeArray[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+       print(typeArray[row])
+       categorytext=typeArray[row]
+       category.text=categorytext
+       pickerview.isHidden = true
+        category.isHidden = false
+    }
+    
     
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         
@@ -89,6 +121,7 @@ class ViewController: UIViewController,XMLParserDelegate {
             let types = RecipeTypes(typeName: typeName)
             print(types)
             recipetypes.append(types)
+            typeArray.append(typeName)
         }
     }
     
@@ -116,6 +149,8 @@ class ViewController: UIViewController,XMLParserDelegate {
     
     @IBAction func tapFunction(sender: UITapGestureRecognizer) {
         print("tap working")
+          pickerview.isHidden = false
+        category.isHidden = true
     }
     
     func set(){
@@ -123,6 +158,7 @@ class ViewController: UIViewController,XMLParserDelegate {
         image.text=imagetext
         ingredient.text=ingtext
         step.text=steptext
+        category.text=categorytext
         if image2data != nil {
            image2.image=UIImage(data: image2data as! Data)
         }
