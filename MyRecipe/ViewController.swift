@@ -45,6 +45,10 @@ class ViewController: UIViewController {
         image2.isUserInteractionEnabled = true
         image2.addGestureRecognizer(tapGestureRecognizer)
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.tapFunction))
+        category.isUserInteractionEnabled = true
+        category.addGestureRecognizer(tap)
+        
         self.imagePicker = ImagePicker(presentationController: self, delegate: self)
         
         set()
@@ -58,6 +62,10 @@ class ViewController: UIViewController {
      
         self.imagePicker.present(from:tappedImage)
         
+    }
+    
+    @IBAction func tapFunction(sender: UITapGestureRecognizer) {
+        print("tap working")
     }
     
     func set(){
@@ -99,6 +107,7 @@ class ViewController: UIViewController {
         user.setValue(step.text, forKey: "step")
         user.setValue(imageData, forKey: "image2")
         user.setValue(category.text, forKey: "category")
+        print(category.text)
         
         
         //Now we have set all the values. The next step is to save them inside the Core Data
@@ -138,6 +147,7 @@ class ViewController: UIViewController {
                 print(data.value(forKey: "image") as! String)
                 print(data.value(forKey: "ingredient") as! String)
                 print(data.value(forKey: "step") as! String)
+                print(data.value(forKey: "category") as! String)
                 print(data.value(forKey: "image2"))
                 
                 ingtext=data.value(forKey: "ingredient") as! String
