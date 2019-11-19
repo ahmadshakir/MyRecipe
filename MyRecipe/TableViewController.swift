@@ -69,8 +69,8 @@ class TableViewController: UITableViewController {
             let vc = segue.destination as? ViewController
             
             vc?.imagetext = image
-            vc?.ingtext = ingredient
-            vc?.steptext = step
+//            vc?.ingtext = ingredient
+//            vc?.steptext = step
         }
     }
 

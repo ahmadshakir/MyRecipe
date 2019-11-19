@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     var imagetext:String = ""
     var ingtext:String = ""
     var steptext:String = ""
+    var image2data:NSData?
     
     
     
@@ -26,7 +27,14 @@ class ViewController: UIViewController {
     
     
     @IBAction func btnsave(_ sender: Any) {
-        save()
+        if imagetext == ""{
+            save()
+        }
+        else{
+            updateData()
+            
+        }
+            
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,12 +59,18 @@ class ViewController: UIViewController {
     }
     
     func set(){
+        retrieveData()
         image.text=imagetext
         ingredient.text=ingtext
         step.text=steptext
-        imagetext=""
-        ingtext=""
-        steptext=""
+        if image2data != nil {
+           image2.image=UIImage(data: image2data as! Data)
+        }
+        
+//        print("here===",image2data)
+//        imagetext=""
+//        ingtext=""
+//        steptext=""
     }
     
     
@@ -111,8 +125,8 @@ class ViewController: UIViewController {
         //Prepare the request of type NSFetchRequest  for the entity
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Recipe")
         
-        //        fetchRequest.fetchLimit = 1
-        //        fetchRequest.predicate = NSPredicate(format: "username = %@", "Ankur")
+//                fetchRequest.fetchLimit = 1
+              fetchRequest.predicate = NSPredicate(format: "image = %@", imagetext)
         //        fetchRequest.sortDescriptors = [NSSortDescriptor.init(key: "email", ascending: false)]
         //
         do {
@@ -122,6 +136,10 @@ class ViewController: UIViewController {
                 print(data.value(forKey: "ingredient") as! String)
                 print(data.value(forKey: "step") as! String)
                 print(data.value(forKey: "image2"))
+                
+                ingtext=data.value(forKey: "ingredient") as! String
+                steptext=data.value(forKey: "step") as! String
+                image2data=(data.value(forKey: "image2")) as? NSData
             }
             
         } catch {
@@ -129,8 +147,45 @@ class ViewController: UIViewController {
             print("Failed")
         }
     }
+    
+    func updateData(){
+        
+        //As we know that container is set up in the AppDelegates so we need to refer that container.
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        //We need to create a context from this container
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Recipe")
+        print("imagetext",imagetext)
+        fetchRequest.predicate = NSPredicate(format: "image = %@", imagetext)
+        do
+        {
+            let imageData = image2.image?.jpegData(compressionQuality: 0.75)
+            let test = try managedContext.fetch(fetchRequest)
+            
+            let objectUpdate = test[0] as! NSManagedObject
+            objectUpdate.setValue(image.text, forKey: "image")
+            objectUpdate.setValue(ingredient.text, forKey: "ingredient")
+            objectUpdate.setValue(step.text, forKey: "step")
+            objectUpdate.setValue(imageData, forKey: "image2")
+            do{
+                try managedContext.save()
+                self.navigationController?.popViewController(animated: true)
+            }
+            catch
+            {
+                print(error)
+            }
+        }
+        catch
+        {
+            print(error)
+        }
+        
+    }
     override func viewWillDisappear(_ animated: Bool){
-        imagetext=""
+        //imagetext=""
         ingtext=""
         steptext=""
     }
