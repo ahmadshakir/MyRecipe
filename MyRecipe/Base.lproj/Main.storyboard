@@ -13,7 +13,7 @@
         <!--My Recipe-->
         <scene sceneID="oog-Je-60A">
             <objects>
-                <tableViewController id="6uQ-yw-Tjz" sceneMemberID="viewController">
+                <tableViewController id="6uQ-yw-Tjz" customClass="TableViewController" customModule="MyRecipe" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ppV-FN-QQ0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -36,7 +36,7 @@
                     <navigationItem key="navigationItem" title="My Recipe" id="Ktx-3m-QLH">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="AVX-gV-dNV">
                             <connections>
-                                <segue destination="5Ex-ny-jqf" kind="push" id="6mt-Sh-ed2"/>
+                                <segue destination="5Ex-ny-jqf" kind="show" id="6mt-Sh-ed2"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -80,6 +80,11 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Csw-yq-yQF">
+                                                <rect key="frame" x="87" y="536" width="240" height="128"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -131,6 +136,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="image" destination="hVX-MR-PNH" id="Lgf-j6-J7T"/>
+                        <outlet property="image2" destination="Csw-yq-yQF" id="NNy-HZ-NwH"/>
                         <outlet property="ingredient" destination="zh9-yM-KGN" id="L4p-3L-G1y"/>
                         <outlet property="step" destination="3Pj-pO-RwA" id="8XW-L9-yh6"/>
                     </connections>

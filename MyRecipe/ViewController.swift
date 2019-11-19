@@ -14,8 +14,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var image: UITextView!
     @IBOutlet weak var ingredient: UITextView!
     @IBOutlet weak var step: UITextView!
+    @IBOutlet weak var image2: UIImageView!
     
     
+    var imagePicker: ImagePicker!
     
     @IBAction func btnsave(_ sender: Any) {
         save()
@@ -23,9 +25,23 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+        image2.isUserInteractionEnabled = true
+        image2.addGestureRecognizer(tapGestureRecognizer)
+        
+        self.imagePicker = ImagePicker(presentationController: self, delegate: self)
+    }
+    
+    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        let tappedImage = tapGestureRecognizer.view as! UIImageView
+         print("imageTapped")
+        // Your action
+     
+        self.imagePicker.present(from:tappedImage)
         
     }
-
+    
     
     func save(){
         print("SAVE")
@@ -98,4 +114,9 @@ class ViewController: UIViewController {
     
     
 }
-
+extension ViewController: ImagePickerDelegate {
+    
+    func didSelect(image: UIImage?) {
+        self.image2.image = image
+    }
+}
