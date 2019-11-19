@@ -58,12 +58,13 @@ class ViewController: UIViewController {
         //final, we need to add some data to our newly created record for each keys using
         //here adding 5 data with loop
         
-        
+        let imageData = image2.image?.jpegData(compressionQuality: 0.75)
         
         let user = NSManagedObject(entity: userEntity, insertInto: managedContext)
         user.setValue(image.text, forKeyPath: "image")
         user.setValue(ingredient.text, forKey: "ingredient")
         user.setValue(step.text, forKey: "step")
+        user.setValue(imageData, forKey: "image2")
         
         
         //Now we have set all the values. The next step is to save them inside the Core Data
@@ -103,6 +104,7 @@ class ViewController: UIViewController {
                 print(data.value(forKey: "image") as! String)
                 print(data.value(forKey: "ingredient") as! String)
                 print(data.value(forKey: "step") as! String)
+                print(data.value(forKey: "image2"))
             }
             
         } catch {
