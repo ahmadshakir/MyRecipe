@@ -9,30 +9,69 @@
 import UIKit
 import CoreData
 
+var recipes: [NSManagedObject] = []
+
 class TableViewController: UITableViewController {
+    
+    var image=""
+    var ingredient=""
+    var step=""
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
-        retrieveData()
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return recipes.count
+    }
+    
+    override func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath)
+        -> UITableViewCell {
+            
+            let recipe = recipes[indexPath.row]
+            let cell =
+                tableView.dequeueReusableCell(withIdentifier: "Cell",
+                                              for: indexPath)
+            cell.textLabel?.text =
+                recipe.value(forKeyPath: "image") as? String
+            return cell
+    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        print(cell?.textLabel?.text)
+        
+        image = (cell?.textLabel!.text)!
+        performSegue(withIdentifier: "viewdetail", sender: self)
+        
+        
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.destination is ViewController
+        {
+            let vc = segue.destination as? ViewController
+            
+            vc?.imagetext = image
+            vc?.ingtext = ingredient
+            vc?.steptext = step
+        }
     }
 
     /*
@@ -90,6 +129,7 @@ class TableViewController: UITableViewController {
     }
     */
     func retrieveData() {
+        recipes=[]
         print("RETRIEVEDATA")
         
         //As we know that container is set up in the AppDelegates so we need to refer that container.
@@ -113,6 +153,9 @@ class TableViewController: UITableViewController {
                 print(data.value(forKey: "image") as! String)
                 print(data.value(forKey: "ingredient") as! String)
                 print(data.value(forKey: "step") as! String)
+                recipes.append(data)
+                tableView.reloadData()
+                
             }
             
         } catch {
@@ -121,5 +164,35 @@ class TableViewController: UITableViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+       retrieveData()
+         image=""
+         ingredient=""
+         step=""
+
+        
+        print("WIll")
+    }
+}
+extension ViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView,
+                   numberOfRowsInSection section: Int) -> Int {
+       
+         print(recipes.count)
+        return recipes.count
+       
+    }
     
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath)
+        -> UITableViewCell {
+            
+            let recipe = recipes[indexPath.row]
+            let cell =
+                tableView.dequeueReusableCell(withIdentifier: "Cell",
+                                              for: indexPath)
+            cell.textLabel?.text =
+                recipe.value(forKeyPath: "name") as? String
+            return cell
+    }
 }

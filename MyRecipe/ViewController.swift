@@ -16,8 +16,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var step: UITextView!
     @IBOutlet weak var image2: UIImageView!
     
+    var imagetext:String = ""
+    var ingtext:String = ""
+    var steptext:String = ""
+    
+    
     
     var imagePicker: ImagePicker!
+    
     
     @IBAction func btnsave(_ sender: Any) {
         save()
@@ -30,6 +36,8 @@ class ViewController: UIViewController {
         image2.addGestureRecognizer(tapGestureRecognizer)
         
         self.imagePicker = ImagePicker(presentationController: self, delegate: self)
+        
+        set()
     }
     
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
@@ -40,6 +48,15 @@ class ViewController: UIViewController {
      
         self.imagePicker.present(from:tappedImage)
         
+    }
+    
+    func set(){
+        image.text=imagetext
+        ingredient.text=ingtext
+        step.text=steptext
+        imagetext=""
+        ingtext=""
+        steptext=""
     }
     
     
@@ -112,8 +129,12 @@ class ViewController: UIViewController {
             print("Failed")
         }
     }
-    
-    
+    override func viewWillDisappear(_ animated: Bool){
+        imagetext=""
+        ingtext=""
+        steptext=""
+    }
+   
     
 }
 extension ViewController: ImagePickerDelegate {

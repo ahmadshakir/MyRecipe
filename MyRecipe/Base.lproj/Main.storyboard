@@ -13,33 +13,45 @@
         <!--My Recipe-->
         <scene sceneID="oog-Je-60A">
             <objects>
-                <tableViewController id="6uQ-yw-Tjz" customClass="TableViewController" customModule="MyRecipe" sceneMemberID="viewController">
+                <tableViewController id="6uQ-yw-Tjz" customClass="TableViewController" customModule="MyRecipe" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ppV-FN-QQ0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="8hm-Y7-Avh">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="fQV-fq-wNH" style="IBUITableViewCellStyleDefault" id="8hm-Y7-Avh">
                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8hm-Y7-Avh" id="vvn-eT-dMx">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fQV-fq-wNH">
+                                            <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="6uQ-yw-Tjz" id="M5T-sb-7vT"/>
-                            <outlet property="delegate" destination="6uQ-yw-Tjz" id="LpN-qX-bQV"/>
+                            <outlet property="dataSource" destination="6uQ-yw-Tjz" id="OFu-NA-29z"/>
+                            <outlet property="delegate" destination="6uQ-yw-Tjz" id="9p2-9u-qMa"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="My Recipe" id="Ktx-3m-QLH">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="AVX-gV-dNV">
                             <connections>
-                                <segue destination="5Ex-ny-jqf" kind="show" id="6mt-Sh-ed2"/>
+                                <segue destination="5Ex-ny-jqf" kind="show" identifier="viewdetail" id="6mt-Sh-ed2"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="ppV-FN-QQ0" id="bXN-UD-DH0"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Onv-VN-Ufk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
