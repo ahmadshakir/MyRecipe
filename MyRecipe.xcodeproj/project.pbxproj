@@ -62,6 +62,7 @@
 		0A2B8DF023836CF3000C6770 /* MyRecipe */ = {
 			isa = PBXGroup;
 			children = (
+				0AA382032383C05900006709 /* recipetypes.xml */,
 				0A2B8DF123836CF3000C6770 /* AppDelegate.swift */,
 				0A2B8DF323836CF3000C6770 /* ViewController.swift */,
 				0A9C7EA223837E92000A6039 /* ImagePicker.swift */,
@@ -71,7 +72,6 @@
 				0A2B8DFD23836CF4000C6770 /* LaunchScreen.storyboard */,
 				0A2B8E0023836CF4000C6770 /* Info.plist */,
 				0A2B8DF823836CF3000C6770 /* MyRecipe.xcdatamodeld */,
-				0AA382032383C05900006709 /* recipetypes.xml */,
 			);
 			path = MyRecipe;
 			sourceTree = "<group>";

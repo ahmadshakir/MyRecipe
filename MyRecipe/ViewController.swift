@@ -48,6 +48,13 @@ class ViewController: UIViewController,XMLParserDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let path = Bundle.main.url(forResource: "recipetypes", withExtension: "xml") {
+            if let parser = XMLParser(contentsOf: path) {
+                parser.delegate = self
+                parser.parse()
+            }
+        }
         // Do any additional setup after loading the view.
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
         image2.isUserInteractionEnabled = true
@@ -60,16 +67,42 @@ class ViewController: UIViewController,XMLParserDelegate {
         self.imagePicker = ImagePicker(presentationController: self, delegate: self)
         
         set()
-        
-        if let path = Bundle.main.url(forResource: "recipetypes", withExtension: "xml") {
-            if let parser = XMLParser(contentsOf: path) {
-                parser.delegate = self
-                parser.parse()
-            }
-        }
+       
         
         print(recipetypes)
     }
+    
+    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
+        
+        if elementName == "types" {
+            typeName = String()
+            
+            
+        }
+        
+        self.elementName = elementName
+        
+    }
+    
+    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+        if elementName == "types" {
+            let types = RecipeTypes(typeName: typeName)
+            print(types)
+            recipetypes.append(types)
+        }
+    }
+    
+    func parser(_ parser: XMLParser, foundCharacters string: String) {
+        let data = string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        
+        if (!data.isEmpty) {
+            if self.elementName == "name" {
+                typeName += data
+            }
+        }
+    }
+    
+    
     
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
@@ -222,36 +255,6 @@ class ViewController: UIViewController,XMLParserDelegate {
         steptext=""
         image2data=nil
     }
-    
-    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
-        
-        if elementName == "types" {
-            typeName = String()
-        }
-        
-        self.elementName = elementName
-    }
-    
-    
-    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        if elementName == "types" {
-            let types = RecipeTypes(typeName: typeName)
-            print(types)
-            recipetypes.append(types)
-        }
-    }
-    
-    
-    func parser(_ parser: XMLParser, foundCharacters string: String) {
-        let data = string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-        
-        if (!data.isEmpty) {
-            if self.elementName == "name" {
-                typeName += data
-            }
-        }
-    }
-    
         
    
     
